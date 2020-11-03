@@ -5,6 +5,12 @@ import itb2.image.ImageConverter;
 import itb2.image.ImageFactory;
 import itb2.image.RgbImage;
 
+/**
+ * 2 bilder als input, das erste wird mit den zweiten maskiert
+ * 
+ * @author Leo Kyster Oerter, Felix Lehmann, Jan Manhillen
+ */
+
 public class Maskierung_LKO_FL_JM extends AbstractFilter {
 
 	public Image[] filter(Image[] input) {
