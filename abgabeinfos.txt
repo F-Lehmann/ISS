@@ -1,4 +1,4 @@
 Namen in alle Dateien, die abgegeben werden
 Initialen in Dateinamen
 
-<Blatt>_<Aufgabe>_LKO_FL_JM.<Dateiendung>
+<Aufgabentitel>_LKO_FL_JM.<Dateiendung>
