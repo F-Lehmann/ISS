@@ -5,7 +5,7 @@ import itb2.image.ImageFactory;
 import itb2.image.RgbImage;
 
 /**
- * verst‰rkt einen RGB-kanal um einen wert zwischen 0 und 10
+ * verst√§rkt einen RGB-kanal um einen wert zwischen 0 und 10
  * 
  * @author Leo Kyster Oerter, Felix Lehmann, Jan Manhillen
  */
@@ -26,7 +26,8 @@ public class SelektiveFarbverbesserung_LKO_FL_JM extends AbstractFilter {
 			for (int col = 0; col < input.getWidth(); col++) {
 				for (int row = 0; row < input.getHeight(); row++) {
 					output.setValue(col, row, properties.getRangeProperty("Faktor") * input.getValue(col, row, RgbImage.RED),
-							input.getValue(col, row, RgbImage.GREEN), input.getValue(col, row, RgbImage.BLUE));
+							input.getValue(col, row, RgbImage.GREEN),
+							input.getValue(col, row, RgbImage.BLUE));
 				}
 			}
 		} else if (properties.getOptionProperty("Kanal") == "G") {
