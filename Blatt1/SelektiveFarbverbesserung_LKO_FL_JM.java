@@ -25,7 +25,8 @@ public class SelektiveFarbverbesserung_LKO_FL_JM extends AbstractFilter {
 		if (properties.getOptionProperty("Kanal") == "R") {
 			for (int col = 0; col < input.getWidth(); col++) {
 				for (int row = 0; row < input.getHeight(); row++) {
-					output.setValue(col, row, properties.getRangeProperty("Faktor") * input.getValue(col, row, RgbImage.RED),
+					output.setValue(col, row, 
+							properties.getRangeProperty("Faktor") * input.getValue(col, row, RgbImage.RED),
 							input.getValue(col, row, RgbImage.GREEN),
 							input.getValue(col, row, RgbImage.BLUE));
 				}
@@ -33,15 +34,17 @@ public class SelektiveFarbverbesserung_LKO_FL_JM extends AbstractFilter {
 		} else if (properties.getOptionProperty("Kanal") == "G") {
 			for (int col = 0; col < input.getWidth(); col++) {
 				for (int row = 0; row < input.getHeight(); row++) {
-					output.setValue(col, row, input.getValue(col, row, RgbImage.RED),
+					output.setValue(col, row, 
+							input.getValue(col, row, RgbImage.RED),
 							properties.getRangeProperty("Faktor") * input.getValue(col, row, RgbImage.GREEN),
 							input.getValue(col, row, RgbImage.BLUE));
 				}
 			}
-		} else {
+		} else if (properties.getOptionProperty("Kanal") == "B") {
 			for (int col = 0; col < input.getWidth(); col++) {
 				for (int row = 0; row < input.getHeight(); row++) {
-					output.setValue(col, row, input.getValue(col, row, RgbImage.RED),
+					output.setValue(col, row, 
+							input.getValue(col, row, RgbImage.RED),
 							input.getValue(col, row, RgbImage.GREEN),
 							properties.getRangeProperty("Faktor") * input.getValue(col, row, RgbImage.BLUE));
 				}
