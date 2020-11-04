@@ -27,7 +27,7 @@ public class Maskierung_LKO_FL_JM extends AbstractFilter {
 		RgbImage inputBild = ImageConverter.convert(input[0], RgbImage.class);
 		BinaryImage inputMaske = ImageConverter.convert(input[1], BinaryImage.class);
 
-		// verhindert abbruch des programms falls maske kleiner als bild durch skalierung
+		// verhindert abbruch des programms falls maske kleiner als bild mit padding
 		BinaryImage newMask = ImageFactory.getPrecision(inputMaske).binary(inputBild.getSize());
 		for (int col = 0; col < inputMaske.getWidth(); col++) {
 			for (int row = 0; row < inputMaske.getHeight(); row++) {
