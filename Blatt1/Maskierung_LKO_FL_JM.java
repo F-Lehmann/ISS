@@ -1,3 +1,4 @@
+import itb2.engine.Controller;
 import itb2.filter.AbstractFilter;
 import itb2.image.BinaryImage;
 import itb2.image.Image;
@@ -15,8 +16,9 @@ public class Maskierung_LKO_FL_JM extends AbstractFilter {
 
 	@Override
 	public Image[] filter(Image[] input) {
-		if (input.length != 2) {
-			throw new IllegalArgumentException("Input must be exactly 2 images");
+		if(input.length != 2) {
+			Controller.getCommunicationManager().warning("Maskierung erfordert genau zwei Eingabebilder");
+			return new Image[0];
 		}
 	
 		Image[] output = new Image[1];
