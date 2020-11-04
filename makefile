@@ -7,13 +7,7 @@ OUTDIR = ITB2/Filter/
 .java.class:
 	$(JC) $(JFLAGS) $*.java
 
-# ADD NEW CLASSES HERE
-CLASSES = \
-	ITB2/ITB2/examples/Grayfilter.java \
-	ITB2/ITB2/examples/PropertyExample.java \
-	ITB2/ITB2/examples/SelectionExample.java \
-	*/SelektiveFarbverbesserung_LKO_FL_JM.java \
-	*/CopyImageFilter_KB.java
+CLASSES = $(shell find . -name '*.java')
 
 default: classes
 
@@ -21,6 +15,6 @@ classes: $(CLASSES:.java=.class)
 
 clean:
 	$(RM) $(OUTDIR)*.class
-	
+
 run:
 	java -jar ITB2/ITB2.jar
