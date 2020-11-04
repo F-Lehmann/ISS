@@ -16,28 +16,27 @@ public class Maskierung_LKO_FL_JM extends AbstractFilter {
 
 	@Override
 	public Image[] filter(Image[] input) {
-		if(input.length != 2) {
+		if (input.length != 2) {
 			Controller.getCommunicationManager().warning("Maskierung erfordert genau zwei Eingabebilder");
 			return new Image[0];
 		}
-	
+
 		Image[] output = new Image[1];
 		output[0] = ImageFactory.getPrecision(input[0]).rgb(input[0].getSize());
 
 		RgbImage inputBild = ImageConverter.convert(input[0], RgbImage.class);
 		BinaryImage inputMaske = ImageConverter.convert(input[1], BinaryImage.class);
 
-		// verhindert abbruch des programms falls maske kleiner als bild mit padding
-		BinaryImage newMask = ImageFactory.getPrecision(inputMaske).binary(inputBild.getSize());
-		for (int col = 0; col < inputMaske.getWidth(); col++) {
-			for (int row = 0; row < inputMaske.getHeight(); row++) {
-				newMask.setValue(col, row, BinaryImage.BINARY, inputMaske.getValue(col, row, BinaryImage.BINARY));
-			}
-		}
-
 		for (int col = 0; col < inputBild.getWidth(); col++) {
 			for (int row = 0; row < inputBild.getHeight(); row++) {
-				if (newMask.getValue(col, row, BinaryImage.BINARY) == 1) {
+				double maskPixel = 0;
+				try {
+					maskPixel = inputMaske.getValue(col, row, BinaryImage.BINARY);
+				} catch (java.lang.ArrayIndexOutOfBoundsException e) {
+					maskPixel = 0;
+				}
+
+				if (maskPixel == 1) {
 					output[0].setValue(col, row, inputBild.getValue(col, row));
 				} else {
 					output[0].setValue(col, row, 0, 0, 0);
