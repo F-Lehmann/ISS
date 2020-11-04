@@ -11,10 +11,10 @@ CLASSES = $(shell find . -name '*.java')
 
 default: classes
 
-classes: $(CLASSES:.java=.class)
+classes: clean $(CLASSES:.java=.class)
 
 clean:
 	$(RM) $(OUTDIR)*.class
 
-run:
+run: classes
 	java -jar ITB2/ITB2.jar
