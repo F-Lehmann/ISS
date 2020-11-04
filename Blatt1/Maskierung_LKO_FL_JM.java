@@ -13,14 +13,19 @@ import itb2.image.RgbImage;
 
 public class Maskierung_LKO_FL_JM extends AbstractFilter {
 
+	@Override
 	public Image[] filter(Image[] input) {
+		if (input.length != 2) {
+			throw new IllegalArgumentException("Input must be exactly 2 images");
+		}
+	
 		Image[] output = new Image[1];
 		output[0] = ImageFactory.getPrecision(input[0]).rgb(input[0].getSize());
 
 		RgbImage inputBild = ImageConverter.convert(input[0], RgbImage.class);
 		BinaryImage inputMaske = ImageConverter.convert(input[1], BinaryImage.class);
 
-		// verhindert abbruch des programms falls maske kleiner als bild
+		// verhindert abbruch des programms falls maske kleiner als bild durch skalierung
 		BinaryImage newMask = ImageFactory.getPrecision(inputMaske).binary(inputBild.getSize());
 		for (int col = 0; col < inputMaske.getWidth(); col++) {
 			for (int row = 0; row < inputMaske.getHeight(); row++) {
