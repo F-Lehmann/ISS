@@ -8,7 +8,7 @@ import itb2.image.GrayscaleImage;
  */
 
 
-public abstract class ConvolutionFilter3x3_LKO_FL_JM extends ConvolutionFilter_LKO_FL_JM {
+public class ConvolutionFilter3x3_LKO_FL_JM extends ConvolutionFilter_LKO_FL_JM {
     @Override
     public GrayscaleImage getKernel(){
         GrayscaleImage kernel = ImageFactory.doublePrecision().gray(3, 3);
