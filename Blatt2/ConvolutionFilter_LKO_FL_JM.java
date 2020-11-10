@@ -20,14 +20,14 @@ public abstract class ConvolutionFilter_LKO_FL_JM extends AbstractFilter {
 	public Image filter(Image input){
 		Image mask = getKernel();
 		int deltaSize = mask.getHeight() / 2;
-		Image output = ImageFactory.getPrecision(input).gray(input.getHeight()-deltaSize,input.getWidth()-deltaSize);
+		Image output = ImageFactory.getPrecision(input).gray(input.getWidth()-deltaSize*2,input.getHeight()-deltaSize*2);
 		for (int outcol = 0; outcol < output.getWidth(); outcol++) {
 			for (int outrow = 0; outrow < output.getHeight(); outrow++) {
 				double result = 0;
-				for (int maskcol = 0; maskcol < output.getWidth(); maskcol++) {
-					for (int maskrow = 0; maskrow < output.getHeight(); maskrow++) {
-						int incol = outcol-deltaSize+maskcol;
-						int inrow = outrow-deltaSize+maskrow;
+				for (int maskcol = 0; maskcol < mask.getWidth(); maskcol++) {
+					for (int maskrow = 0; maskrow < mask.getHeight(); maskrow++) {
+						int incol = outcol+maskcol;
+						int inrow = outrow+maskrow;
 						result = result + (input.getValue(incol, inrow, GrayscaleImage.GRAYSCALE) * mask.getValue(maskcol, maskrow, GrayscaleImage.GRAYSCALE));
 					}
 				}
