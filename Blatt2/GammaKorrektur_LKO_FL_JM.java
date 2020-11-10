@@ -19,20 +19,14 @@ public class GammaKorrektur_LKO_FL_JM extends AbstractFilter {
 
 	@Override
 	public Image filter(Image input) {
-
+		
 		Image output = ImageFactory.getPrecision(input).gray(input.getSize());
-
+		
 		for (int col = 0; col < input.getWidth(); col++) {
 			for (int row = 0; row < input.getHeight(); row++) {
-
-				int newValue = Math.toIntExact(Math.round(256 * Math.pow((input.getValue(col, row, GrayscaleImage.GRAYSCALE) / 255),
-						properties.getDoubleProperty("γ"))));
-
-				output.setValue(col, row, newValue);
+				output.setValue(col, row, Math.toIntExact(Math.round(256 * Math.pow((input.getValue(col, row, GrayscaleImage.GRAYSCALE) / 255), properties.getDoubleProperty("γ")))));
 			}
 		}
-
 		return output;
 	}
-
 }
