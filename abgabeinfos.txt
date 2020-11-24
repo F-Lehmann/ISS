@@ -1,4 +1,0 @@
-Namen in alle Dateien, die abgegeben werden
-Initialen in Dateinamen
-
-<Aufgabentitel>_LKO_FL_JM.<Dateiendung>
