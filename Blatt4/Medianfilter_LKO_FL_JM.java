@@ -1,5 +1,4 @@
 import java.util.Arrays;
-
 import itb2.filter.AbstractFilter;
 import itb2.filter.RequireImageType;
 import itb2.image.GrayscaleImage;
@@ -18,10 +17,10 @@ public class Medianfilter_LKO_FL_JM extends AbstractFilter {
 	@Override
 	public Image filter(Image input) {
 
-		GrayscaleImage output = ImageFactory.getPrecision(input).gray(input.getWidth() - 4, input.getHeight() - 4);
+		GrayscaleImage output = ImageFactory.getPrecision(input).gray(input.getWidth() - 2, input.getHeight() - 2);
 
-		for (int col = 2; col < input.getWidth() - 2; col++) {
-			for (int row = 2; row < input.getHeight() - 2; row++) {
+		for (int col = 1; col < input.getWidth() - 1; col++) {
+			for (int row = 1; row < input.getHeight() - 1; row++) {
 				int[] intensities = { -1, -1, -1, -1, -1, -1, -1, -1, -1 };
 				for (int filtercol = -1; filtercol <= 1; filtercol++) {
 					for (int filterrow = -1; filterrow <= 1; filterrow++) {
@@ -32,7 +31,7 @@ public class Medianfilter_LKO_FL_JM extends AbstractFilter {
 					}
 				}
 				Arrays.sort(intensities);
-				output.setValue(col - 2, row - 2, intensities[4]);
+				output.setValue(col - 1, row - 1, intensities[4]);
 			}
 		}
 
