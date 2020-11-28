@@ -34,7 +34,6 @@ public class Medianfilter_LKO_FL_JM extends AbstractFilter {
 				output.setValue(col - 1, row - 1, intensities[4]);
 			}
 		}
-
 		return output;
 	}
 }
