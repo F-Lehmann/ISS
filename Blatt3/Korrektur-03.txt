@@ -1,0 +1,1 @@
+Ihr habt 9 von 10 Punkten. Den Abzug gab es für das fehlende Überprüfen von Nulldurchgängen bei eurem Laplace Operator.
