@@ -18,10 +18,10 @@ import itb2.image.ImageFactory;
 
 @RequireImageType(BinaryImage.class)
 public class ConnectedComponentLabeling_LKO_FL_JM extends AbstractFilter {
-	
+
 	@Override
 	public Image filter(Image input) {
-		
+
 		Image helperimage = ImageFactory.bytePrecision().rgb(input.getSize());
 		int label = 0;
 		int progress = 0;
@@ -33,7 +33,7 @@ public class ConnectedComponentLabeling_LKO_FL_JM extends AbstractFilter {
 					for (int irow = -1; irow < 2; irow++) {
 						for (int icol = -1; icol < 2; icol++) {
 							try {
-								if (helperimage.getValue(col + icol, row + irow, 1) != 0) {
+								if (helperimage.getValue(col + icol, row + irow, 1) != 0 && !neighborLabels.contains((int) helperimage.getValue(col + icol, row + irow, 1))) {
 									neighborLabels.add((int) helperimage.getValue(col + icol, row + irow, 1));
 								}
 							} catch (Exception e) {
@@ -44,8 +44,6 @@ public class ConnectedComponentLabeling_LKO_FL_JM extends AbstractFilter {
 						Collections.sort(neighborLabels);
 						if (neighborLabels.get(0) != 0) {
 							helperimage.setValue(col, row, 1, neighborLabels.get(0));
-							// store the equivalence between neighboring labels in a list or an array
-							// of label equivalences
 							while (neighborLabels.size() > 1) {
 								for (int erow = 0; erow < helperimage.getHeight(); erow++) {
 									for (int ecol = 0; ecol < helperimage.getWidth(); ecol++) {
